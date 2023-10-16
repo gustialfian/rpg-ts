@@ -1,0 +1,8 @@
+{
+  "extends": "fastify-tsconfig",
+  "compilerOptions": {
+    "outDir": "build",
+    "lib": ["ES2018"],
+    "target": "ES2018"
+  }
+}

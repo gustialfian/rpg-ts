@@ -1,0 +1,36 @@
+{
+  "name": "rpg-ts",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "db:generate": "drizzle-kit generate:pg",
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/env": "^4.2.0",
+    "@fastify/swagger": "^8.12.0",
+    "@fastify/swagger-ui": "^1.10.1",
+    "@fastify/type-provider-typebox": "^3.5.0",
+    "@sinclair/typebox": "^0.31.17",
+    "close-with-grace": "^1.2.0",
+    "drizzle-orm": "^0.28.6",
+    "fastify": "^4.24.2",
+    "fastify-plugin": "^4.5.1",
+    "pg": "^8.11.3",
+    "pino-pretty": "^10.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.6",
+    "@types/pg": "^8.10.5",
+    "drizzle-kit": "^0.19.13",
+    "fastify-tsconfig": "^2.0.0",
+    "tsx": "^3.13.0",
+    "typescript": "^5.2.2"
+  }
+}
