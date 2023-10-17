@@ -7,6 +7,7 @@ const schema = Type.Object({
     PORT: Type.String({ default: 3000 }),
     HOST: Type.String({ default: '127.0.0.1' }),
     DB_CON: Type.String({ default: 'postgres://sandbox:sandbox@127.0.0.1:5432/rpg' }),
+    JWT_SECRET: Type.String({ default: 'supersecretskill' }),
 })
 
 const config: FastifyPluginAsyncTypebox = async (app) => {
@@ -16,6 +17,8 @@ const config: FastifyPluginAsyncTypebox = async (app) => {
         dotenv: true,
         schema: schema
     })
+    
+    app.log.info(app.config)
 }
 
 declare module 'fastify' {

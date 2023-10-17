@@ -1,17 +1,31 @@
 import fastify from 'fastify'
-import config from './config'
-import db from './db'
-import swagger from './swagger'
-import itemRoute from './items'
+import bcryptPlugin from './bcrypt'
+import configPlugin from './config'
+import dbPlugin from './db'
+import itemsRoute from './items'
+import jwtPlugin from './jwt'
+import swaggerPlugin from './swagger'
+import usersRoute from './users'
+import authRoute from './auth'
 
 export async function build(opts: any) {
   const app = fastify(opts)
 
-  app.register(config)
-  app.register(db)
-  app.register(swagger)
+  // shared plugin
+  app.register(configPlugin)
+  app.register(dbPlugin)
+  app.register(swaggerPlugin)
+  app.register(bcryptPlugin)
+  app.register(jwtPlugin)
 
-  app.register(itemRoute, { prefix: 'items' })
+  // routes plugin
+  app.register(authRoute, { prefix: 'auth' })
+  app.register(async (authApp) => {
+    authApp.addHook('onRequest', authApp.jwtGuard)
+
+    authApp.register(usersRoute, { prefix: 'users' })
+    authApp.register(itemsRoute, { prefix: 'items' })
+  })
 
   return app
 }

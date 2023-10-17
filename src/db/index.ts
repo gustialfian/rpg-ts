@@ -6,7 +6,6 @@ import {Pool} from 'pg'
 
 const db: FastifyPluginAsyncTypebox = async (app) => {
     app.log.info('register db')
-    app.log.info(app.config)
 
     const pool = new Pool({
         connectionString: app.config.DB_CON,
